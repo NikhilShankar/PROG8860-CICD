@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./cicd-assignment1
+        working-directory: ./cicd-assignment1/go-docker-app
     
     steps:
       - name: Checkout code
@@ -38,7 +38,7 @@ jobs:
     needs: build
     defaults:
       run:
-        working-directory: ./cicd-assignment1
+        working-directory: ./cicd-assignment1/go-docker-app
     
     steps:
       - name: Checkout code
@@ -86,7 +86,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./cicd-assignment1
+          context: ./cicd-assignment1/go-docker-app
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.tag }}
