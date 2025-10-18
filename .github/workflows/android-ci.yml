@@ -1,0 +1,38 @@
+name: Android CI
+
+on:
+  push:
+    paths:
+      - 'android/**'
+      - '.github/workflows/android-ci.yml'
+  pull_request:
+    paths:
+      - 'android/**'
+      - '.github/workflows/android-ci.yml'
+
+jobs:
+  build-test-and-docker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: niks1267
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+    - name: Build Multi-stage Docker Image
+      working-directory: ./android
+      run: docker build -t niks1267/counter-app-reports:latest .
+
+    - name: Push Docker Image
+      run: docker push niks1267/counter-app-reports:latest
+
+    - name: Verify Image
+      run: |
+        echo "Docker image built and pushed successfully!"
+        echo "To run locally: docker run -p 9898:9898 niks1267/counter-app-reports:latest"
+        echo "Access reports at: http://localhost:9898"
