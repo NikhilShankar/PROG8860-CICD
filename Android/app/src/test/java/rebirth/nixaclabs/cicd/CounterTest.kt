@@ -14,7 +14,7 @@ class CounterTest {
 
     @Test
     fun testInitialCountIsZero() {
-        assertEquals(1, counter.getCount())
+        assertEquals(0, counter.getCount())
     }
 
     @Test
