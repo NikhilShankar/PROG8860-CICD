@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'niks1267/counter-app-reports'
         DOCKER_TAG = 'latest'
+        DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
     }
     
     stages {
@@ -18,9 +19,9 @@ pipeline {
             steps {
                 echo 'Building Docker image (includes build, test, and lint)...'
                 dir('Android') {
-                    script {
-                        docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
-                    }
+                    sh '''
+                        docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
+                    '''
                 }
             }
         }
@@ -28,11 +29,11 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credentials') {
-                        docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").push()
-                    }
-                }
+                sh '''
+                    echo $DOCKER_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR --password-stdin
+                    docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+                    docker logout
+                '''
             }
         }
     }
@@ -46,8 +47,8 @@ pipeline {
             echo 'Pipeline failed!'
         }
         always {
-            echo 'Cleaning up...'
-            sh 'docker system prune -f'
+            echo 'Cleaning up workspace...'
+            cleanWs()
         }
     }
 }
