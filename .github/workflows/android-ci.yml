@@ -3,11 +3,11 @@ name: Android CI
 on:
   push:
     paths:
-      - 'android/**'
+      - 'Android/**'
       - '.github/workflows/android-ci.yml'
   pull_request:
     paths:
-      - 'android/**'
+      - 'Android/**'
       - '.github/workflows/android-ci.yml'
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
     - name: Build Multi-stage Docker Image
-      working-directory: ./android
+      working-directory: ./Android
       run: docker build -t niks1267/counter-app-reports:latest .
 
     - name: Push Docker Image
