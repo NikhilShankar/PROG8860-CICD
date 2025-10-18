@@ -22,7 +22,7 @@ jobs:
       uses: docker/login-action@v2
       with:
         username: niks1267
-        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN_CICD_ASSIGNMENT3 }}
 
     - name: Build Multi-stage Docker Image
       working-directory: ./Android

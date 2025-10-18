@@ -4,20 +4,48 @@ delete.md
 
 
 # Ignore Android Studio files
+# Android project ignores
 Android/*.iml
-Android/.gradle
-Android/gradle/
-Android/local.properties
-Android/.idea/caches
-Android/.idea/libraries
-Android/.idea/modules.xml
-Android/.idea/workspace.xml
-Android/.idea/navEditor.xml
-Android/.idea/assetWizardSettings.xml
-Android/.DS_Store
-Android/build/
-Android/captures
-Android/.externalNativeBuild
-Android/.cxx
+Android/.gradle/
 Android/local.properties
 Android/.idea/
+Android/.DS_Store
+Android/build/
+Android/captures/
+Android/.externalNativeBuild
+Android/.cxx
+
+# Built application files
+Android/*.apk
+Android/*.aar
+Android/*.ap_
+Android/*.aab
+
+# Files for the ART/Dalvik VM
+Android/*.dex
+
+# Generated files
+Android/bin/
+Android/gen/
+Android/out/
+Android/release/
+
+# App build folder
+Android/app/build/
+
+# Log Files
+Android/*.log
+
+# Keystore files
+Android/*.jks
+Android/*.keystore
+
+# Google Services
+Android/google-services.json
+
+# Android Profiling
+Android/*.hprof
+
+# Keep gradle wrapper - IMPORTANT!
+!Android/gradle/wrapper/gradle-wrapper.jar
+!Android/gradle/wrapper/gradle-wrapper.properties
