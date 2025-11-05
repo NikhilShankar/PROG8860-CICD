@@ -143,3 +143,5 @@ The Dockerfile uses two stages:
 - **Containerization**: Docker (multi-stage build)
 - **Report Server**: Python HTTP Server
 - **Registry**: Docker Hub
+
+Triggering a build.
