@@ -61,4 +61,5 @@ COPY --from=server-repo /server/server.py /reports/server.py
 
 EXPOSE 9898
 
+
 CMD ["python", "server.py"]
