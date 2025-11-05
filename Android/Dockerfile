@@ -1,5 +1,5 @@
 # Stage 1: Build Environment
-FROM openjdk:17-slim AS builder
+FROM openjdk:17-jdk-slim AS builder
 
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools
